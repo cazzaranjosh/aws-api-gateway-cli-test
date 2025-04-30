@@ -133,6 +133,8 @@ function getCredentials(userTokens, callback) {
   var logins = {};
   var idToken = userTokens.idToken;
   var accessToken = userTokens.accessToken;
+  console.log('idToken: ', userTokens.idToken);
+  console.log('accessToken: ', userTokens.accessToken);
 
   logins[
     "cognito-idp." + argv.cognitoRegion + ".amazonaws.com/" + argv.userPoolId
@@ -155,7 +157,9 @@ function getCredentials(userTokens, callback) {
 
 function makeRequest(userTokens) {
   console.log("Making API request");
-
+  console.log('accessKey: ', AWS.config.credentials.accessKeyId);
+  console.log('secretKey: ', AWS.config.credentials.secretAccessKey);
+  console.log('sessionToken:', AWS.config.credentials.sessionToken,);
   var apigClient = apigClientFactory.newClient({
     apiKey: argv.apiKey,
     accessKey: AWS.config.credentials.accessKeyId,
